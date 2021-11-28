@@ -1,5 +1,7 @@
 package `class`
 
+import `class`.basic.myNothing
+
 fun main() {
-    println("this is the main function")
+    myNothing("ahhhahaha")
 }
