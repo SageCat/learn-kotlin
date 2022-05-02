@@ -1,6 +1,8 @@
 package `class`.basic
 
 fun main() {
+
+
     val strLength = "HebeiHubeiShanghai".count()
 
     /*
