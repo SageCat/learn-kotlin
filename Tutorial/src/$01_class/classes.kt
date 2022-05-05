@@ -1,8 +1,10 @@
-package `class`.basic
+package `$01_class`
+
+import java.util.*
 
 fun main() {
     var user = User(firstName = "Sage", lastName = "Guo")
-    user.phoneNum = "123455"
+//    user.phoneNum = "123455"
     println(user)
     println(user::class)
 
@@ -22,7 +24,7 @@ fun main() {
     userSister.fullName = "sss"
     println(userSister.fullName)
 
-    println(">>>>>>>>>半生对象>>>>>>>>")
+    println(">>>>>>>>>伴生对象>>>>>>>>")
     /**
      * 可以通过类名调用半生对象中的方法，相当于 Java 的 static 方法
      */
@@ -43,13 +45,33 @@ fun main() {
     Car.printColor()
     Car.color = "Red"
     Car.printColor()
+
+    println(">>>>>>>>>静态内部类>>>>>>>>")
+    val staticInner = Outer.StaticInner()
+    println(staticInner)
+
+    println(">>>>>>>>>非静态内部类>>>>>>>>")
+    val generalInner = Outer("Outer Class").GeneralInner()
+    println(generalInner)
+    generalInner.printName()
+
+    println(">>>>>>>>>枚举类>>>>>>>>")
+    println(GradeClass.A)
+    println("the min grade of A class is ${GradeClass.A.grade}")
+    println("the calculated grade of B class is ${GradeClass.B.calculateGrade()}")
+    println("get grade class by name is ${GradeClass.getGradeClassByName("F")}")
+
+    println("输出枚举类中的所有值")
+    for (gradeClass in GradeClass.values()) {
+        println(gradeClass)
+    }
 }
 
 /** 带 primary constructor 的类，
  *若对其中某些参数给定默认值，则创建对象时，不必显式地填入值，可以省去创建 secondary constructor 的麻烦
  */
 class User(var firstName: String, var lastName: String, var isHappy: Boolean) {
-    lateinit var phoneNum: String
+//    lateinit var phoneNum: String
     //    var firstName = ""
 //    var lastName = ""
     /**
@@ -94,7 +116,7 @@ class User(var firstName: String, var lastName: String, var isHappy: Boolean) {
     }
 
     override fun toString(): String {
-        return "$firstName - $lastName, the phone number is $phoneNum"
+        return "$firstName - $lastName"
     }
 
     /**
@@ -145,5 +167,78 @@ object Car {
 
     fun printColor() {
         println("the color is $color")
+    }
+}
+
+/**
+ * 内部类
+ */
+class Outer(var name: String) {
+    /**
+     * 可以通过 外部类名.内部类名 直接调用
+     */
+    class StaticInner {
+        /**
+         * 无法访问外部类的成员变量，下述代码会报错
+        fun printName() {
+        println("name is $name")
+        }
+         */
+    }
+
+    /**
+     * 需要通过 外部类对象.内部类名 才能调用，比静态内部类多了一个 inner 关键字
+     */
+    inner class GeneralInner {
+        /**
+         * 可以访问外部类的成员变量
+         */
+        fun printName() {
+            println("name is $name")
+        }
+    }
+}
+
+/**
+ * 枚举类
+ * 还可以在构造方法中为枚举类指定数值
+ * 还可以为枚举类实现抽象方法
+ */
+enum class GradeClass(val grade: Int) {
+    A(95) {
+        override fun calculateGrade(): Int {
+            return 95
+        }
+    },
+    B(85) {
+        override fun calculateGrade(): Int {
+            return 85
+        }
+    },
+    C(80) {
+        override fun calculateGrade(): Int {
+            return 80
+        }
+    },
+    D(70) {
+        override fun calculateGrade(): Int {
+            return 70
+        }
+    },
+    F(60) {
+        override fun calculateGrade(): Int {
+            return 60
+        }
+    };
+
+    abstract fun calculateGrade(): Int
+
+    /**
+     * 定义静态方法，需要使用 伴生对象
+     */
+    companion object {
+        fun getGradeClassByName(name: String): GradeClass {
+            return GradeClass.valueOf(name.uppercase(Locale.getDefault()))
+        }
     }
 }

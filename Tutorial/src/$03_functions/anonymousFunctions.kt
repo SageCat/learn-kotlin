@@ -1,4 +1,4 @@
-package `class`.basic
+package `$03_functions`
 
 fun main() {
     val strLength = "HebeiHubeiShanghai".count()
@@ -35,9 +35,8 @@ fun main() {
     println("3 square is ${mySquare.invoke(3)}")
     println("3 square is ${mySquareOther.invoke(3)}")
 
-    println(">>>>>>>>>>>>>>>>>>>>")
-    hello()
-    println(println())
+    println(">>>>>>>>>默认返回 Unit>>>>>>>>>>>")
+    println(hello())
 
 }
 

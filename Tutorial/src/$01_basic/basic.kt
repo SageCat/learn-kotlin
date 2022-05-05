@@ -1,6 +1,4 @@
-package `class`.basic
-
-import java.util.StringJoiner
+package `$01_basic`
 
 /*
 介绍Kotlin最最基本的语法，包括变量，常量，数据类型等
@@ -80,7 +78,7 @@ fun main() {
     nameC = null
     println("nameC is $nameC")
 
-    var nameD = "John"
+    val nameD = "John"
     println("the length of nameD is ${nameD.length}")
     // 当变量为可空类型时，使用变量时要做检验
     var nameE: String? = "Jack Li"
