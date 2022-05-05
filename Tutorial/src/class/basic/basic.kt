@@ -7,6 +7,7 @@ import java.util.StringJoiner
  */
 
 fun main() {
+    // 查看变量所属类型
     val name = "sage"
     println(name::class)
     println("==================")
@@ -83,6 +84,8 @@ fun main() {
     println("the length of nameD is ${nameD.length}")
     // 当变量为可空类型时，使用变量时要做检验
     var nameE: String? = "Jack Li"
+    // elvis 操作符
+    var nameELength: Int = nameE?.length ?: 0
     // 为可控变量赋值为 null
     if (true) nameE = null
     // 检验方法一： 在变量名后面增加 ? 号， 当变量为空时， 返回结果为 null， 当变量不为空时，返回变量所指向的字符串长度
@@ -99,6 +102,5 @@ fun main() {
 }
 
 
+// 定义一个测试类 Person
 class Person(var name: String)
-
-public fun myNothing(reason: String): Nothing = throw Exception("the reason of this exception is $reason")
