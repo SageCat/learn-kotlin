@@ -1,5 +1,0 @@
-package codes
-
-fun main() {
-
-}
