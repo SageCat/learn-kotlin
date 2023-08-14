@@ -8,21 +8,3 @@ fun main() {
 //    class kotlin.String
 }
 ```
-
-## 2. Change somthing
-
-add new features
-add new features
-add new features
-add new features
-
-add new features in branch
-add new features in branch
-add new features in branch
-add new features in branch
-
-
-add new features in master
-add new features in branch again
-add new features in branch again
-add new features in branch again
